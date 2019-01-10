@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafio 4</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="desafio">
+    <h2>#01</h2>
+    <!-- 1) Iniciar a execução do efeito usando botão.
+      O efeito deve alternadamente trocar as classes "destaque" e
+      "encolher" para cada chamada de setInteval. Use a div abaixo
+      com id "efeito" para associar as classes CSS. -->
+    <div>
+      <button @click="iniciarEfeito">Iniciar Efeito</button>
+
+      <div id="efeito" :class="efeito ? 'destaque' : 'encolher'"></div>
+    </div>
+
+    <hr>
+
+    <h2>#02</h2>
+    <!-- 2) Crie duas classes CSS e associe a div usando a
+      sintaxe de array -->
+    <div :class="['square', 'bg-danger']">Estou sem classe CSS :(</div>
+
+    <hr>
+
+    <h2>#03</h2>
+    <!-- 3) Deixe o usuário informar o nome da classe (crie classe CSS
+      de exemplo) e associe a div abaixo. -->
+    <div>
+      <input type="text" v-model="classe3">
+
+      <div :class="classe3"></div>
+    </div>
+
+    <hr>
+
+    <h2>#04</h2>
+    <!-- 4) Aplique na div abaixo a classe informada pelo usuário e outra classe usando o valor true/false (crie classes CSS de exemplo) -->
+    <div>
+      <input type="text" v-model="classe4">
+
+      <input type="text">
+
+      <div :class="classe4"></div>
+    </div>
+
+    <hr>
+
+    <h2>#05</h2>
+    <!-- 5) Repita 3) mas utilizando estilos ao invés de classes CSS.
+      Associe os estilos a div abaixo  -->
+    <div>
+      <input type="text" v-model="cor5">
+
+      <div class="square" :style="{backgroundColor: cor5}"></div>
+    </div>
+
+    <hr>
+
+    <h2>#06</h2>
+    <!-- 6) Crie uma barra de progresso simples com setInterval e biding de estilo -->
+    <div>
+      <button v-on:click="iniciarProgresso">Iniciar progresso</button>
+
+      <div style="height: 1rem; margin: 1rem 0; background: coral;" :style="{width: `${progressBarWidth}%`}">{{ `${progressBarWidth}%` }}</div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="app.js"></script>
+</body>
+</html>

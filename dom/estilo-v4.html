@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Começando com VueJS</title>
+
+  <style>
+    .caixas {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .demo {
+      width: 100px;
+      height: 100px;
+
+      background-color: gray;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: lime;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .rotate {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="caixas">
+      <div class="demo" :style="{backgroundColor: color}"></div>
+
+      <div class="demo" :style="myStyle"></div>
+
+      <div class="demo" :style="[myStyle, {height: `${height}px`, border: '.25rem solid lime'}]"></div>
+    </div>
+
+    <hr>
+
+    <input type="text" v-model="color">
+
+    <input type="text" v-model="width">
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        color: 'red',
+        width: 100,
+        height: 300
+      },
+      computed: {
+        myStyle() {
+          return {
+            width: `${this.width}px`,
+            backgroundColor: this.color
+          };
+        }
+      }
+    });
+  </script>
+</body>
+</html>

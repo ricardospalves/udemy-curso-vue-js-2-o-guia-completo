@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Começando com VueJS</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ contador }}</p>
+    <p>{{ `${ contador <= 10 ? 'Menor' : 'Maior' } do que 10` }}</p>
+
+    <button v-on:click="somar">Incrementar</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    'use strict';
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        contador: 0
+      },
+      methods: {
+        somar(number, event) {
+          this.contador++;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

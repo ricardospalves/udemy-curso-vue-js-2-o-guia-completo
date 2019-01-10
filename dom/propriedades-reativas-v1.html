@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Two Way Data Binding - Começando com VueJS</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ title }}</h1>
+
+    <input type="text" v-model="title">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    'use strict';
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        title: 'Começando com VueJS'
+      }
+    });
+  </script>
+</body>
+</html>

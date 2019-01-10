@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Começando com VueJS</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ title }}</h1>
+
+    <p>{{ saudacao() }}</p>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    'use strict';
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        title: 'Começando com VueJS'
+      },
+      methods: {
+        saudacao: () => 'Olá mundo!'
+      }
+    });
+  </script>
+</body>
+</html>

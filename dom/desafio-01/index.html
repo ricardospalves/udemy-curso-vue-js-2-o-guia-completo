@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafio 1</title>
+</head>
+<body>
+  <div id="desafio">
+    <!-- 1) Preencha a tag <p> abaixo com o seu Nome e Idade - usando Interpolação -->
+    <p>Usando VueJS - {{ name }} {{ age }}</p>
+
+    <!-- 2) Exiba sua idade multiplicada por 3 -->
+    <p>{{ age * 3 }}</p>
+
+    <!-- 3) Chame uma função para exibir um número randomico
+    entre 0 and 1 (Math.random()) -->
+    <p>{{ Math.random() }}</p>
+
+    <!-- 4) Procure uma imagem no google e exiba na tag img
+    fazendo o binding no atributo "src" -->
+    <div>
+      <img v-bind:src="img" height="400">
+    </div>
+
+    <!-- 5) Inicialize o input com o seu nome (use o atributo "value") -->
+    <div>
+      <input type="text" v-bind:value="name">
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="app.js"></script>
+</body>
+</html>
