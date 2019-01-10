@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Condicionais</title>
+</head>
+<body>
+  <div id="app">
+    <template v-if="isLogged">
+      <p>Usuário registrado: {{ name }}</p>
+
+      <p>Perfil: Admin</p>
+    </template>
+
+    <p v-else-if="isAnonymous">Você está navegando anonimamente</p>
+
+    <p v-else>Nenhum usuário registrado</p>
+
+    <button @click="isLogged = !isLogged">{{ isLogged ? 'Sair' : 'Entrar' }}</button>
+
+    <br>
+
+    <label>
+      <input type="checkbox" v-model="isAnonymous">
+
+      Deseja navegar anonimamente?
+    </label>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        name: 'Lorem Ipsum',
+        isLogged: false,
+        isAnonymous: false
+      }
+    });
+  </script>
+</body>
+</html>

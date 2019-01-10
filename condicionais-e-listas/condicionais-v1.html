@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Condicionais</title>
+</head>
+<body>
+  <div id="app">
+    <p v-if="isLogged">Usuário registrado: {{ name }}</p>
+
+    <p v-else>Nenhum usuário registrado</p>
+
+    <button @click="isLogged = !isLogged">{{ isLogged ? 'Sair' : 'Entrar' }}</button>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        name: 'Lorem Ipsum',
+        isLogged: false
+      }
+    });
+  </script>
+</body>
+</html>
