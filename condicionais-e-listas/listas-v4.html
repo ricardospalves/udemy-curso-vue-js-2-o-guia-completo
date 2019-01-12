@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Listas</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(color, index) in colors">{{ color }} - {{ index }}</li>
+    </ul>
+
+    <template v-for="(color, index) in colors">
+      <hr>
+
+      <h2>{{ color }}</h2>
+
+      <p>{{ index }}</p>
+    </template>
+
+    <hr>
+
+    <ul>
+      <li v-for="person in people">
+        <div v-for="(value, key, index) in person">
+          {{ key }}: {{ value }} - {{ index }}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        colors: [
+          'red',
+          'green',
+          'blue'
+        ],
+        people: [
+          {
+            name: 'Lorem',
+            age: 20,
+            weight: 50
+          },
+          {
+            name: 'Ipsum',
+            age: 40,
+            weight: 100
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

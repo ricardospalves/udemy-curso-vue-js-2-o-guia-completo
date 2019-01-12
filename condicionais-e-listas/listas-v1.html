@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Listas</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="color in colors">{{ color }}</li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        colors: [
+          'red',
+          'green',
+          'blue'
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
