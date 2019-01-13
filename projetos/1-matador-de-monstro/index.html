@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Matador de monstro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app" class="max-w-lg mx-auto text-center">
+    <h1 class="text-center">Matador de monstro</h1>
+
+    <div class="flex my-8">
+      <template v-for="player in players">
+        <div class="w-1/2 p-2">
+          <h2>{{ player.title }}</h2>
+
+          <div class="flex h-6 my-2 border border-black" :class="player.id === 'monster' ? 'justify-end' : ''">
+            <div class="bg-green" :style="{width: `${player.life}%`}"></div>
+          </div>
+
+          <p>{{ `${player.life}%` }}</p>
+        </div>
+      </template>
+    </div>
+
+    <p class="uppercase font-bold" v-show="showMessage">Lorem ipsum</p>
+
+    <div class="my-8 flex justify-center">
+      <div v-show="isPlaying">
+        <button :class="btnClasses">Ataque</button>
+        <button :class="btnClasses">Ataque Especial</button>
+        <button :class="btnClasses">Cura</button>
+        <button :class="btnClasses" @click="giveUp">Desistir</button>
+      </div>
+
+      <div v-show="!isPlaying">
+        <button :class="btnClasses" @click="play">Iniciar novo jogo</button>
+      </div>
+    </div>
+
+    <ul class="list-reset" v-show="isPlaying">
+      <li :class="[logs.classes, 'bg-red', index % 2 ? 'bg-green' : 'bg-red']" v-for="(message, index) in logs.messages">{{ message }}</li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="app.js"></script>
+</body>
+</html>
