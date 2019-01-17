@@ -17,7 +17,7 @@
       this.life = this.range.max;
     }
 
-    decrement(value) {
+    decrease(value) {
       const result = this.life - value;
 
       if(result > 0) {
@@ -29,7 +29,7 @@
       }
     }
 
-    increment(value) {
+    increase(value) {
       const result = this.life + value;
 
       if(result < 100) {
@@ -57,7 +57,8 @@
       ],
       result: {
         isShow: false,
-        message: ''
+        message: '',
+        class: ''
       },
       buttons: {
         isShow: false,
@@ -103,16 +104,45 @@
       },
       attack() {
         const damage = {
-          you: this.damageRandom(15),
+          you: this.damageRandom(20),
           monster: this.damageRandom(10)
         }
         
         for(let key in damage) {
           const value = damage[key];
           
-          this.getPlayerById(key).decrement(value)
+          this.getPlayerById(key).decrease(value)
           
           this.logs.messages.unshift(`${key === 'you' ? 'Você atingiu o montro' : 'O monstro te atingiu'} com ${value}`)
+        }
+      },
+      specialAttack() {
+        const damage = {
+          you: this.damageRandom(10),
+          monster: this.damageRandom(20)
+        }
+        
+        for(let key in damage) {
+          const value = damage[key];
+          
+          this.getPlayerById(key).decrease(value)
+          
+          this.logs.messages.unshift(`${key === 'you' ? 'Você atingiu o montro' : 'O monstro te atingiu'} com ${value}`)
+        }
+      },
+      cure() {
+        const damageValue = 15
+        const damage = {
+          you: this.damageRandom(damageValue),
+          monster: this.damageRandom(damageValue)
+        }
+        
+        for(let key in damage) {
+          const value = damage[key];
+          
+          this.getPlayerById(key).decrease(value)
+          
+          this.logs.messages.unshift(`${key === 'you' ? 'Você foi curado' : 'O monstro te atingiu'} com ${value}`)
         }
       }
     },
@@ -129,14 +159,16 @@
         if(!value) {
           this.result.isShow = true;
           this.buttons.isShow = false;
-          this.result.message = 'O monstro comeu seu cu!';
+          this.result.message = 'O Monstro venceu!';
+          this.result.class = 'text-red';
         }
       },
       monsterLife(value) {
         if(!value) {
           this.result.isShow = true;
           this.buttons.isShow = false;
-          this.result.message = 'Você botou o monstro pra mamar!';
+          this.result.message = 'Você venceu!';
+          this.result.class = 'text-green'
         }
       }
     }
