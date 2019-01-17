@@ -24,13 +24,13 @@
       </template>
     </div>
 
-    <p class="uppercase font-bold" v-show="result.isShow">{{ result.message }}</p>
+    <p class="uppercase font-bold" v-show="result.isShow" :class="result.class">{{ result.message }}</p>
 
     <div class="my-8 flex justify-center">
       <div v-show="buttons.isShow">
         <button :class="buttons.classes" @click="attack">Ataque</button>
-        <button :class="buttons.classes">Ataque Especial</button>
-        <button :class="buttons.classes">Cura</button>
+        <button :class="buttons.classes" @click="specialAttack">Ataque Especial</button>
+        <button :class="buttons.classes" @click="cure">Cura</button>
         <button :class="buttons.classes" @click="giveUp">Desistir</button>
       </div>
 
