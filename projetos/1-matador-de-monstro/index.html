@@ -16,15 +16,15 @@
           <h2>{{ player.title }}</h2>
 
           <div class="flex h-6 my-2 border border-black" :class="player.id === 'monster' ? 'justify-end' : ''">
-            <div class="bg-green" :style="{width: `${player.life}%`}"></div>
+            <div class="bg-green" :style="{ width: `${player.life}%`}"></div>
           </div>
 
-          <p>{{ `${player.life}%` }}</p>
+          <p></p>
         </div>
       </template>
     </div>
 
-    <p class="uppercase font-bold" v-show="showMessage">Lorem ipsum</p>
+    <p class="uppercase font-bold" v-show="result.isShow">{{ result.message }}</p>
 
     <div class="my-8 flex justify-center">
       <div v-show="isPlaying">
@@ -34,13 +34,11 @@
         <button :class="btnClasses" @click="giveUp">Desistir</button>
       </div>
 
-      <div v-show="!isPlaying">
-        <button :class="btnClasses" @click="play">Iniciar novo jogo</button>
-      </div>
+      <button :class="btnClasses" @click="start" v-show="!isPlaying">Iniciar novo jogo</button>
     </div>
 
     <ul class="list-reset" v-show="isPlaying">
-      <li :class="[logs.classes, 'bg-red', index % 2 ? 'bg-green' : 'bg-red']" v-for="(message, index) in logs.messages">{{ message }}</li>
+      <li :class="logs.classes" v-for="message in logs.messages" :key="message">{{ message }}</li>
     </ul>
   </div>
 
