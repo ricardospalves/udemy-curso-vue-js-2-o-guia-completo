@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-  <div id="app" class="max-w-lg mx-auto text-center">
+  <div id="app" class="max-w-lg px-2 mx-auto text-center">
     <h1 class="text-center">Matador de monstro</h1>
 
     <div class="flex my-8">
@@ -19,7 +19,7 @@
             <div class="bg-green" :style="{ width: `${player.life}%`}"></div>
           </div>
 
-          <p></p>
+          <p>{{ `${player.life}%` }}</p>
         </div>
       </template>
     </div>
@@ -27,18 +27,18 @@
     <p class="uppercase font-bold" v-show="result.isShow">{{ result.message }}</p>
 
     <div class="my-8 flex justify-center">
-      <div v-show="isPlaying">
-        <button :class="btnClasses">Ataque</button>
-        <button :class="btnClasses">Ataque Especial</button>
-        <button :class="btnClasses">Cura</button>
-        <button :class="btnClasses" @click="giveUp">Desistir</button>
+      <div v-show="buttons.isShow">
+        <button :class="buttons.classes" @click="attack">Ataque</button>
+        <button :class="buttons.classes">Ataque Especial</button>
+        <button :class="buttons.classes">Cura</button>
+        <button :class="buttons.classes" @click="giveUp">Desistir</button>
       </div>
 
-      <button :class="btnClasses" @click="start" v-show="!isPlaying">Iniciar novo jogo</button>
+      <button :class="buttons.classes" @click="start" v-show="!buttons.isShow">Iniciar novo jogo</button>
     </div>
 
-    <ul class="list-reset" v-show="isPlaying">
-      <li :class="logs.classes" v-for="message in logs.messages" :key="message">{{ message }}</li>
+    <ul class="list-reset">
+      <li :class="[logs.classes, index % 2 ? 'bg-green' : 'bg-red']" v-for="(message, index) in logs.messages" :key="message">{{ message }}</li>
     </ul>
   </div>
 
