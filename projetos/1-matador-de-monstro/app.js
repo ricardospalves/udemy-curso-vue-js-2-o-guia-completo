@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  console.clear();
 
   class Player {
     constructor({id, title}) {
@@ -10,6 +11,10 @@
         min: 0,
         max: 100
       };
+    }
+    
+    fill() {
+      this.life = this.range.max;
     }
 
     decrement(value) {
@@ -40,7 +45,6 @@
   const app = new Vue({
     el: '#app',
     data: {
-      isPlaying: false,
       players: [
         new Player({
           id: 'you',
@@ -55,31 +59,61 @@
         isShow: false,
         message: ''
       },
-      btnClasses: [
-        'p-2',
-        'm-2',
-        'bg-grey',
-        'rounded'
-      ],
+      buttons: {
+        isShow: false,
+        classes: [
+          'p-2',
+          'm-2',
+          'bg-grey',
+          'rounded'
+        ]
+      },
       logs: {
         messages: [],
         classes: [
           'p-2',
           'my-2',
           'rounded'
-        ]
+        ],
+        clear() {
+          this.messages = []
+        }
       }
     },
     methods: {
       start() {
-        this.isPlaying = true
+        this.buttons.isShow = true
         this.result.isShow = false
+        this.logs.clear()
+        
+        this.players.forEach(player => {
+          player.fill()
+        })
       },
       giveUp() {
-        this.isPlaying = false
+        this.buttons.isShow = false
       },
       getPlayerById(id) {
         return this.players.filter(item => item.id === id)[0];
+      },
+      damageRandom(maxRange = 1) {
+        const math = Math;
+
+        return math.round(math.random() * maxRange);
+      },
+      attack() {
+        const damage = {
+          you: this.damageRandom(15),
+          monster: this.damageRandom(10)
+        }
+        
+        for(let key in damage) {
+          const value = damage[key];
+          
+          this.getPlayerById(key).decrement(value)
+          
+          this.logs.messages.unshift(`${key === 'you' ? 'Você atingiu o montro' : 'O monstro te atingiu'} com ${value}`)
+        }
       }
     },
     computed: {
@@ -94,12 +128,14 @@
       youLife(value) {
         if(!value) {
           this.result.isShow = true;
+          this.buttons.isShow = false;
           this.result.message = 'O monstro comeu seu cu!';
         }
       },
       monsterLife(value) {
         if(!value) {
           this.result.isShow = true;
+          this.buttons.isShow = false;
           this.result.message = 'Você botou o monstro pra mamar!';
         }
       }
