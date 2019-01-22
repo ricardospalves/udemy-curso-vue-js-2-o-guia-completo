@@ -102,42 +102,48 @@
 
         return math.round(math.random() * maxRange);
       },
-      attack() {
+      playerAction({ youDamage, monsterDamage, isCure = false }) {
         const forceDamage = {
-          you: this.damageRandom(10),
-          monster: this.damageRandom(20)
+          you: this.damageRandom(youDamage),
+          monster: this.damageRandom(monsterDamage)
         };
         
         this.getPlayerById('you').decrease(forceDamage.monster)
-        this.getPlayerById('monster').decrease(forceDamage.you)
         
-        this.logs.messages.unshift(`Jogador atingiu Monstro com ${forceDamage.you}`)
+        if( isCure ) {
+          this.getPlayerById('you').increase(forceDamage.you)
+          
+          this.logs.messages.unshift(`Jogador foi curado com ${forceDamage.you}`)
+        }
+        
+        else {
+          this.getPlayerById('monster').decrease(forceDamage.you)
+          
+          this.logs.messages.unshift(`Jogador atingiu Monstro com ${forceDamage.you}`)
+        }
+        
         this.logs.messages.unshift(`Monstro atingiu Jogador com ${forceDamage.monster}`)
       },
+      attack() {
+        this.playerAction({
+          youDamage: 10,
+          monsterDamage: 20
+        })
+      },
       specialAttack() {
-        const forceDamage = {
-          you: this.damageRandom(20),
-          monster: this.damageRandom(10)
-        };
-        
-        this.getPlayerById('you').decrease(forceDamage.monster)
-        this.getPlayerById('monster').decrease(forceDamage.you)
-        
-        this.logs.messages.unshift(`Jogador atingiu Monstro com ${forceDamage.you}`)
-        this.logs.messages.unshift(`Monstro atingiu Jogador com ${forceDamage.monster}`)
+        this.playerAction({
+          youDamage: 20,
+          monsterDamage: 10
+        })
       },
       cure() {
         const damage = 10;
-        const forceDamage = {
-          you: this.damageRandom(damage),
-          monster: this.damageRandom(damage)
-        };
-        
-        this.getPlayerById('you').decrease(forceDamage.monster)
-        this.getPlayerById('you').increase(forceDamage.you)
-        
-        this.logs.messages.unshift(`Jogador foi curado com ${forceDamage.you}`)
-        this.logs.messages.unshift(`Monstro atingiu Jogador com ${forceDamage.monster}`)
+
+        this.playerAction({
+          youDamage: damage,
+          monsterDamage: damage,
+          isCure: true
+        })
       }
     },
     computed: {
