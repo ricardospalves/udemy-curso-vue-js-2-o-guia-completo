@@ -45,6 +45,8 @@
   const app = new Vue({
     el: '#app',
     data: {
+      isRunning: false,
+      showResult: false,
       players: [
         new Player({
           id: 'you',
@@ -55,20 +57,12 @@
           title: 'Monstro'
         })
       ],
-      result: {
-        isShow: false,
-        message: '',
-        class: ''
-      },
-      buttons: {
-        isShow: false,
-        classes: [
-          'p-2',
-          'm-2',
-          'bg-grey',
-          'rounded'
-        ]
-      },
+      buttonClasses: [
+        'p-2',
+        'm-2',
+        'bg-grey',
+        'rounded'
+      ],
       logs: {
         messages: [],
         classes: [
@@ -83,8 +77,8 @@
     },
     methods: {
       start() {
-        this.buttons.isShow = true
-        this.result.isShow = false
+        this.isRunning = true
+        this.showResult = false
         this.logs.clear()
 
         this.players.forEach(player => {
@@ -92,7 +86,7 @@
         })
       },
       giveUp() {
-        this.buttons.isShow = false
+        this.isRunning = false
       },
       getPlayerById(id) {
         return this.players.filter(item => item.id === id)[0];
@@ -147,6 +141,9 @@
       }
     },
     computed: {
+      hasResult() {
+        return this.getPlayerById('you').life === 0 || this.getPlayerById('monster').life === 0;
+      },
       youLife() {
         return this.getPlayerById('you').life
       },
@@ -155,20 +152,10 @@
       }
     },
     watch: {
-      youLife(value) {
-        if(!value) {
-          this.result.isShow = true;
-          this.buttons.isShow = false;
-          this.result.message = 'O Monstro venceu!';
-          this.result.class = 'text-red';
-        }
-      },
-      monsterLife(value) {
-        if(!value) {
-          this.result.isShow = true;
-          this.buttons.isShow = false;
-          this.result.message = 'Você venceu!';
-          this.result.class = 'text-green'
+      hasResult(value) {
+        if(value) {
+          this.isRunning = false;
+          this.showResult = true;
         }
       }
     }

@@ -20,40 +20,40 @@
           </h2>
 
           <div class="flex h-6 my-2 border border-black" :class="player.id === 'monster' ? 'justify-end' : ''">
-            <div class="bg-green" :style="{ width: `${player.life}%`}"></div>
+            <div :class="`bg-${player.life > 20 ? 'green' : 'red'}`" :style="{ width: `${player.life}%`}"></div>
           </div>
 
           <p>
-            {{ `${player.life}%` }}
+            {{ player.life }}%
           </p>
         </div>
       </template>
     </div>
 
-    <p class="uppercase font-bold" v-show="result.isShow" :class="result.class">
-      {{ result.message }}
+    <p class="uppercase font-bold" v-show="showResult" :class="`text-${youLife === 0 ? 'red' : 'green'}`">
+      {{ youLife === 0 ? 'O Monstro' : 'Você' }} ganhou!
     </p>
 
     <div class="my-8 flex justify-center">
-      <div v-show="buttons.isShow">
-        <button :class="[buttons.classes, 'bg-red']" @click="attack">
+      <div v-show="isRunning">
+        <button :class="[buttonClasses, 'bg-red']" @click="attack">
           Ataque
         </button>
 
-        <button :class="[buttons.classes, 'bg-orange']" @click="specialAttack">
+        <button :class="[buttonClasses, 'bg-orange']" @click="specialAttack">
           Ataque Especial
         </button>
 
-        <button :class="[buttons.classes, 'bg-green']" @click="cure">
+        <button :class="[buttonClasses, 'bg-green']" @click="cure">
           Cura
         </button>
 
-        <button :class="buttons.classes" @click="giveUp">
+        <button :class="buttonClasses" @click="giveUp">
           Desistir
         </button>
       </div>
 
-      <button :class="buttons.classes" @click="start" v-show="!buttons.isShow">
+      <button :class="buttonClasses" @click="start" v-show="!isRunning">
         Iniciar novo jogo
       </button>
     </div>
