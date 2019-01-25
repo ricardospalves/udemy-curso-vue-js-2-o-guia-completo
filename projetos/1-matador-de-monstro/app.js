@@ -12,7 +12,7 @@
         max: 100
       };
     }
-    
+
     fill() {
       this.life = this.range.max;
     }
@@ -86,7 +86,7 @@
         this.buttons.isShow = true
         this.result.isShow = false
         this.logs.clear()
-        
+
         this.players.forEach(player => {
           player.fill()
         })
@@ -107,21 +107,21 @@
           you: this.damageRandom(youDamage),
           monster: this.damageRandom(monsterDamage)
         };
-        
+
         this.getPlayerById('you').decrease(forceDamage.monster)
-        
+
         if( isCure ) {
           this.getPlayerById('you').increase(forceDamage.you)
-          
+
           this.logs.messages.unshift(`Jogador foi curado com ${forceDamage.you}`)
         }
-        
+
         else {
           this.getPlayerById('monster').decrease(forceDamage.you)
-          
+
           this.logs.messages.unshift(`Jogador atingiu Monstro com ${forceDamage.you}`)
         }
-        
+
         this.logs.messages.unshift(`Monstro atingiu Jogador com ${forceDamage.monster}`)
       },
       attack() {

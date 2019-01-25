@@ -8,37 +8,60 @@
 </head>
 <body>
   <div id="app" class="max-w-lg px-2 mx-auto text-center">
-    <h1 class="text-center">Matador de monstro</h1>
+    <h1 class="text-center">
+      Matador de monstro
+    </h1>
 
     <div class="flex my-8">
       <template v-for="player in players">
         <div class="w-1/2 p-2">
-          <h2>{{ player.title }}</h2>
+          <h2>
+            {{ player.title }}
+          </h2>
 
           <div class="flex h-6 my-2 border border-black" :class="player.id === 'monster' ? 'justify-end' : ''">
             <div class="bg-green" :style="{ width: `${player.life}%`}"></div>
           </div>
 
-          <p>{{ `${player.life}%` }}</p>
+          <p>
+            {{ `${player.life}%` }}
+          </p>
         </div>
       </template>
     </div>
 
-    <p class="uppercase font-bold" v-show="result.isShow" :class="result.class">{{ result.message }}</p>
+    <p class="uppercase font-bold" v-show="result.isShow" :class="result.class">
+      {{ result.message }}
+    </p>
 
     <div class="my-8 flex justify-center">
       <div v-show="buttons.isShow">
-        <button :class="buttons.classes" @click="attack">Ataque</button>
-        <button :class="buttons.classes" @click="specialAttack">Ataque Especial</button>
-        <button :class="buttons.classes" @click="cure">Cura</button>
-        <button :class="buttons.classes" @click="giveUp">Desistir</button>
+        <button :class="[buttons.classes, 'bg-red']" @click="attack">
+          Ataque
+        </button>
+
+        <button :class="[buttons.classes, 'bg-orange']" @click="specialAttack">
+          Ataque Especial
+        </button>
+
+        <button :class="[buttons.classes, 'bg-green']" @click="cure">
+          Cura
+        </button>
+
+        <button :class="buttons.classes" @click="giveUp">
+          Desistir
+        </button>
       </div>
 
-      <button :class="buttons.classes" @click="start" v-show="!buttons.isShow">Iniciar novo jogo</button>
+      <button :class="buttons.classes" @click="start" v-show="!buttons.isShow">
+        Iniciar novo jogo
+      </button>
     </div>
 
     <ul class="list-reset">
-      <li :class="[logs.classes, index % 2 ? 'bg-green' : 'bg-red']" v-for="(message, index) in logs.messages" :key="message">{{ message }}</li>
+      <li :class="[logs.classes, index % 2 ? 'bg-green' : 'bg-red']" v-for="(message, index) in logs.messages">
+        {{ message }}
+      </li>
     </ul>
   </div>
 
