@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Instâncias Vue externa</title>
+</head>
+<body>
+  <div id="app-1">
+    <h1>{{ title }}</h1>
+
+    <button @click="change">Alterar</button>
+  </div>
+
+  <div id="app-2">
+    <h1>{{ title }}</h1>
+
+    <button @click="change">Alterar</button>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    const vm1 = new Vue({
+      el: '#app-1',
+      data: {
+        title: 'Título 1'
+      },
+      methods: {
+        change() {
+          vm2.title += '!';
+        }
+      }
+    });
+
+    const vm2 = new Vue({
+      el: '#app-2',
+      data: {
+        title: 'Título 2'
+      },
+      methods: {
+        change() {
+          vm1.title += '?';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

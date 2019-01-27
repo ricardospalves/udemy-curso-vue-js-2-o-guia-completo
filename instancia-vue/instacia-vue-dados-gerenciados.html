@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Instância Vue Dados Gerenciados</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ title }}</h1>
+
+    <p>{{ novaPropriedade }}</p>
+
+    <button @click="change">Alterar</button>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        title: 'Título'
+      },
+      methods: {
+        change() {
+          this.title += '!';
+        }
+      }
+    });
+
+    vm.novaPropriedade = 'Nova propriedade';
+
+    console.log(vm.novaPropriedade);
+  </script>
+</body>
+</html>

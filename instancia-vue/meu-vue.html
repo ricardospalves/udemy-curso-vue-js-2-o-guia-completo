@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>MeuVue</title>
+</head>
+<body>
+  <div id="app">
+    {{ name }} {{ surname }} {{ 1 + 1 }}
+  </div>
+
+  <script>
+    function MeuVue({ el, data }) {
+      this.$el = document.querySelector(el);
+      this.$data = data;
+
+      for(let key in this.$data) {
+        Object.defineProperty(this, key, {
+          get: () => this.$data[key],
+          set: value => this.$data[key] = value
+        })
+      }
+
+      // Interpolation
+      const regex = /\{\{([\s\w+]*)\}\}/g;
+
+      this.$el.innerHTML = this.$el.innerHTML.replace(regex, (match, $1) => {
+        const value = this[$1.trim()];
+
+        return value ? value : eval($1);
+      })
+    }
+
+    const vm = new MeuVue({
+      el: '#app',
+      data: {
+        name: 'Maria',
+        surname: 'José'
+      }
+    });
+
+    console.log(vm.name);
+    console.log(vm.$data.name);
+
+    vm.name = 'Ricardo';
+
+    console.log(vm.name);
+    console.log(vm.$data.name);
+  </script>
+</body>
+</html>
