@@ -20,6 +20,7 @@
 
 <style>
   #app {
+    font: 400 16px/1.4 sans-serif;
     background-color: coral;
   }
 </style>
