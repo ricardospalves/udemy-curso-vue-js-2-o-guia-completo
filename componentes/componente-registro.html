@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Revisão de componentes</title>
+</head>
+<body>
+  <div id="app1">
+    <contador></contador>
+
+    <contador></contador>
+
+    <contador></contador>
+  </div>
+
+  <hr>
+
+  <div id="app2">
+    <spinner></spinner>
+
+    <spinner></spinner>
+
+    <spinner></spinner>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    // Registro global
+    const contador = {
+      template: `
+        <div>
+          <input type="number" :value="contador" readonly>
+          <button @click="contador--">-</button>
+          <button @click="contador++">+</button>
+        </div>
+      `,
+      data() {
+        return {
+          contador: 0
+        }
+      }
+    };
+
+    new Vue({
+      el: '#app1',
+      // Registro local
+      components: {
+        contador: contador
+      }
+    })
+
+    new Vue({
+      el: '#app2',
+      // Registro local
+      components: {
+        spinner: contador
+      }
+    })
+  </script>
+</body>
+</html>
