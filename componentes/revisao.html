@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Revisão de componentes</title>
+</head>
+<body>
+  <div id="app">
+    <contador></contador>
+
+    <contador></contador>
+
+    <contador></contador>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    Vue.component('contador', {
+      template: `
+        <div>
+          <input type="number" :value="contador" readonly>
+          <button @click="contador--">-</button>
+          <button @click="contador++">+</button>
+        </div>
+      `,
+      data() {
+        return {
+          contador: 0
+        }
+      }
+    });
+
+    new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>
