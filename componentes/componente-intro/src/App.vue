@@ -4,16 +4,13 @@
       Contadores
     </h1>
 
-    <p>{{ contador }}</p>
+    <app-contador></app-contador>
+    <app-contador></app-contador>
+    <app-contador></app-contador>
   </div>
 </template>
 
 <script>
   export default {
-    data() {
-      return {
-        contador: 0
-      }
-    }
   }
 </script>
