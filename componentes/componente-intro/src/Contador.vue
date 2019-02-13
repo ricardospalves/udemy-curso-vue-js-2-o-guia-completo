@@ -25,3 +25,10 @@
     }
   }
 </script>
+
+<style scoped>
+  button {
+    border: 1px solid;
+    background-color: grey;
+  }
+</style>
