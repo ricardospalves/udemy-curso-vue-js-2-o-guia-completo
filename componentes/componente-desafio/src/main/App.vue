@@ -13,10 +13,10 @@
 </template>
 
 <script>
-  import NavigationDrawer from './NavigationDrawer.vue'
-  import Footer from './Footer.vue'
-  import Carousel from './Carousel.vue'
-  import Toolbar from './Toolbar.vue'
+  import NavigationDrawer from '@/components/NavigationDrawer.vue'
+  import Footer from '@/components/Footer.vue'
+  import Carousel from '@/widget/Carousel.vue'
+  import Toolbar from '@/components/Toolbar.vue'
 
   export default {
     components: {
