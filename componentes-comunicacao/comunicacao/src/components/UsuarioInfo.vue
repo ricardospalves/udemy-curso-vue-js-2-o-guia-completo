@@ -8,9 +8,16 @@
 
 <script>
 export default {
-  props: [
-    'nome'
-  ],
+  props: {
+    nome: {
+      type: String,
+      // required: true,
+      // default() {
+      //   return 'Anônimo'
+      // },
+      default: 'Anônimo'
+    }
+  },
   methods: {
     inverterNome() {
       return this.nome

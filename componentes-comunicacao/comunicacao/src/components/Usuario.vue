@@ -19,7 +19,7 @@ export default {
     components: { AppUsuarioInfo, AppUsuarioEditar },
     data() {
       return {
-        nome: 'Pedro'
+        nome: 'Ricardo'
       }
     },
     methods: {
