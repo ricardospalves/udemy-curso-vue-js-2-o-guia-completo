@@ -10,11 +10,18 @@
 </template>
 
 <script>
+import eventBus from '@/eventBus'
+
 export default {
     data() {
         return {
             usuario: null
         }
+    },
+    created() {
+      eventBus.onUserSelected(user => {
+        this.usuario = user
+      })
     }
 }
 </script>
