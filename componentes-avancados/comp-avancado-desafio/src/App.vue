@@ -1,14 +1,28 @@
 <template>
 	<div id="app">
 		<span>
-			<button class="vermelho">Carregar Componente Vermelho</button>
-			<button class="verde">Carregar Componente Verde</button>
-			<button class="azul">Carregar Componente Azul</button>
+			<button class="vermelho" @click="currentComponent = 'Vermelho'">Carregar Componente Vermelho</button>
+			<button class="verde" @click="currentComponent = 'Verde'">Carregar Componente Verde</button>
+			<button class="azul" @click="currentComponent = 'Azul'">Carregar Componente Azul</button>
 		</span>
-		
-		<Vermelho />
-		<Verde />
-		<Azul />
+
+    <keep-alive>
+      <component :is="currentComponent">
+        Conteúdo do Componente <strong>{{ currentComponent }}</strong>
+      </component>
+    </keep-alive>
+
+		<!-- <Vermelho>
+      Conteúdo do Componente <strong>Vermelho</strong>
+		</Vermelho>
+
+		<Verde>
+      Conteúdo do Componente <strong>Vermelho</strong>
+		</Verde>
+
+		<Azul>
+      Conteúdo do Componente <strong>Vermelho</strong>
+		</Azul> -->
 	</div>
 </template>
 
@@ -19,7 +33,12 @@ import Azul from './components/Azul.vue'
 
 export default {
 	name: 'app',
-	components: { Vermelho, Verde, Azul },
+  components: { Vermelho, Verde, Azul },
+  data() {
+    return {
+      currentComponent: 'Vermelho'
+    }
+  }
 }
 </script>
 
