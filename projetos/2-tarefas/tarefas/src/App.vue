@@ -2,6 +2,10 @@
 	<div id="app">
 		<h1>Tarefas</h1>
 
+    <NewTask
+      @taskAdded="addTask"
+    />
+
     <TasksContainer
       :tasks="tasks"
     />
@@ -9,10 +13,12 @@
 </template>
 
 <script>
+import NewTask from './components/NewTask.vue'
 import TasksContainer from './components/TasksContainer.vue'
 
 export default {
   components: {
+    NewTask,
     TasksContainer
   },
   data() {
@@ -27,6 +33,18 @@ export default {
           pending: true
         }
       ]
+    }
+  },
+  methods: {
+    addTask(task) {
+      const isThereATask = !this.tasks.some(localTask => localTask.name === task.name)
+
+      if(isThereATask) {
+        this.tasks.push({
+          name: task.name,
+          pending: task.pending || true
+        })
+      }
     }
   }
 }
