@@ -6,20 +6,21 @@
       @taskAdded="addTask"
     />
 
-    <TasksContainer
+    <TasksList
       :tasks="tasks"
+      @taskDeleted="deleteTask"
     />
 	</div>
 </template>
 
 <script>
 import NewTask from './components/NewTask.vue'
-import TasksContainer from './components/TasksContainer.vue'
+import TasksList from './components/TasksList.vue'
 
 export default {
   components: {
     NewTask,
-    TasksContainer
+    TasksList
   },
   data() {
     return {
@@ -45,6 +46,9 @@ export default {
           pending: task.pending || true
         })
       }
+    },
+    deleteTask(index) {
+      this.tasks.splice(index, 1)
     }
   }
 }

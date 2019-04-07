@@ -4,6 +4,11 @@
     :class="stateClass"
   >
     {{ task.name }}
+    <button
+      @click="$emit('taskDeleted', task)"
+    >
+      Delete
+    </button>
   </li>
 </template>
 

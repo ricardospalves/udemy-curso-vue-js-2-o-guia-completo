@@ -3,9 +3,10 @@
     <template v-if="tasks.length">
       <ul class="tasks">
         <Task
-          v-for="task in tasks"
+          v-for="(task, index) in tasks"
           :key="task.name"
           :task="task"
+          @taskDeleted="$emit('taskDeleted', index)"
         />
       </ul>
     </template>
