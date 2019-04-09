@@ -9,6 +9,7 @@
     <TasksList
       :tasks="tasks"
       @taskDeleted="deleteTask"
+      @taskStateChanged="toggleTaskState"
     />
 	</div>
 </template>
@@ -24,16 +25,7 @@ export default {
   },
   data() {
     return {
-      tasks: [
-        {
-          name: 'Lorem',
-          pending: false
-        },
-        {
-          name: 'Ipsum',
-          pending: true
-        }
-      ]
+      tasks: []
     }
   },
   methods: {
@@ -49,6 +41,9 @@ export default {
     },
     deleteTask(index) {
       this.tasks.splice(index, 1)
+    },
+    toggleTaskState(index) {
+      this.tasks[index].pending = !this.tasks[index].pending
     }
   }
 }

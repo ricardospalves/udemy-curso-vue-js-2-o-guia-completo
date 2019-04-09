@@ -2,10 +2,11 @@
   <li
     class="tasks__item"
     :class="stateClass"
+    @click="$emit('taskStateChanged', task)"
   >
     {{ task.name }}
     <button
-      @click="$emit('taskDeleted', task)"
+      @click.stop="$emit('taskDeleted', task)"
     >
       Delete
     </button>

@@ -7,6 +7,7 @@
           :key="task.name"
           :task="task"
           @taskDeleted="$emit('taskDeleted', index)"
+          @taskStateChanged="$emit('taskStateChanged', index)"
         />
       </ul>
     </template>
