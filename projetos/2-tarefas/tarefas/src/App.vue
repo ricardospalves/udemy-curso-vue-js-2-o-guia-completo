@@ -34,6 +34,14 @@ export default {
       tasks: []
     }
   },
+  watch: {
+    tasks: {
+      deep: true,
+      handler() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks))
+      }
+    }
+  },
   computed: {
     progress() {
       const totalTasks = this.tasks.length
@@ -59,6 +67,11 @@ export default {
     toggleTaskState(index) {
       this.tasks[index].pending = !this.tasks[index].pending
     }
+  },
+  created() {
+    const json = localStorage.getItem('tasks')
+
+    this.tasks = JSON.parse(json) || []
   }
 }
 </script>
