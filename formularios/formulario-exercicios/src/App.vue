@@ -5,13 +5,13 @@
 			<form class="painel">
 				<div class="cabecalho">Formulário</div>
 				<Rotulo nome="E-mail">
-					<input type="email" v-model="user.email">
+					<input type="email" v-model.lazy.trim="user.email">
 				</Rotulo>
 				<Rotulo nome="Senha">
 					<input type="password" v-model="user.password">
 				</Rotulo>
 				<Rotulo nome="Idade">
-					<input type="number" v-model="user.age">
+					<input type="number" v-model.number="user.age">
 				</Rotulo>
 				<Rotulo nome="Mensagem">
 					<textarea name="" cols="30" rows="5"></textarea>
@@ -45,7 +45,7 @@
 					<span>{{ user.password }}</span>
 				</Rotulo>
 				<Rotulo nome="Idade">
-					<span>{{ user.age }}</span>
+					<span>{{ typeof user.age }}</span>
 				</Rotulo>
 				<Rotulo nome="Mensagem">
 					<span>???</span>
@@ -82,7 +82,7 @@ export default {
       user: {
         email: '',
         password: '',
-        age: ''
+        age: 0
       }
     }
   }
