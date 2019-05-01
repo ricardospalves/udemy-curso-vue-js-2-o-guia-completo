@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!isSent">
 				<div class="cabecalho">Formulário</div>
 				<Rotulo nome="E-mail">
 					<input type="email" v-model.lazy.trim="user.email">
@@ -50,9 +50,9 @@
 					<Escolha v-model="choice" />
 				</Rotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="isSent = true">Enviar</button>
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<Rotulo nome="E-mail">
 					<span>{{ user.email }}</span>
@@ -124,7 +124,8 @@ export default {
           value: 'Alta'
         },
       ],
-      choice: true
+      choice: true,
+      isSent: false
     }
   }
 }
