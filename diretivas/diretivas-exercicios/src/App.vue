@@ -7,6 +7,10 @@
     <hr>
 
     <p v-html="'Usando a diretiva <strong>v-html</strong>'"></p>
+
+    <hr>
+
+    <p v-featured>Usando diretiva customizada</p>
 	</div>
 </template>
 
