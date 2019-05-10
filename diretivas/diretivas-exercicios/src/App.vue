@@ -10,13 +10,18 @@
 
     <hr>
 
-    <p v-featured>Usando diretiva customizada</p>
+    <p v-featured="'red'">Usando diretiva customizada</p>
+    <p v-featured="color">Usando diretiva customizada</p>
 	</div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      color: 'lime'
+    }
+  }
 }
 </script>
 
