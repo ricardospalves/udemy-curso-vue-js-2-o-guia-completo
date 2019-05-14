@@ -10,7 +10,7 @@
 
     <hr>
 
-    <p v-featured="'red'">Usando diretiva customizada</p>
+    <p v-featured:bg="'red'">Usando diretiva customizada</p>
     <p v-featured="color">Usando diretiva customizada</p>
 	</div>
 </template>
