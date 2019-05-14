@@ -12,6 +12,8 @@
 
     <p v-featured:bg="'red'">Usando diretiva customizada</p>
     <p v-featured="color">Usando diretiva customizada</p>
+    <p v-featured:bg.delay="'cyan'">Usando diretiva customizada</p>
+    <p v-featured.delay="'magenta'">Usando diretiva customizada</p>
 	</div>
 </template>
 
