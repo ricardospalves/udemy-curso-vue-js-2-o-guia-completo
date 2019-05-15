@@ -12,13 +12,44 @@
 
     <p v-featured:bg="'red'">Usando diretiva customizada</p>
     <p v-featured="color">Usando diretiva customizada</p>
-    <p v-featured:bg.delay="'cyan'">Usando diretiva customizada</p>
-    <p v-featured.delay="'magenta'">Usando diretiva customizada</p>
+    <p v-featured:bg.delay="'blue'">Usando diretiva customizada</p>
+    <p v-featured.delay="'indianred'">Usando diretiva customizada</p>
+
+    <hr>
+
+    <p v-local-featured:bg="'cyan'">Usando diretiva customizada</p>
+    <p v-local-featured="color">Usando diretiva customizada</p>
+    <p v-local-featured:bg.delay="'magenta'">Usando diretiva customizada</p>
+    <p v-local-featured.delay="'yellow'">Usando diretiva customizada</p>
 	</div>
 </template>
 
 <script>
 export default {
+  directives: {
+    'local-featured': {
+      bind(el, binding, vnode) {
+        const lagTime = hasLagTime => {
+          if(hasLagTime) {
+            return 3000
+          }
+
+          return 0
+        }
+        const hasDelay = binding.modifiers.delay
+
+        setTimeout(() => {
+          if( binding.arg === 'bg' ) {
+            el.style.backgroundColor = binding.value
+          }
+
+          else {
+            el.style.color = binding.value
+          }
+        }, lagTime(hasDelay))
+      }
+    }
+  },
   data() {
     return {
       color: 'lime'
