@@ -19,7 +19,7 @@
 
     <p v-local-featured:bg="'cyan'">Usando diretiva customizada</p>
     <p v-local-featured="color">Usando diretiva customizada</p>
-    <p v-local-featured:bg.delay="'magenta'">Usando diretiva customizada</p>
+    <p v-local-featured:bg.delay.toggle="'magenta'">Usando diretiva customizada</p>
     <p v-local-featured.delay="'yellow'">Usando diretiva customizada</p>
 	</div>
 </template>
@@ -29,24 +29,42 @@ export default {
   directives: {
     'local-featured': {
       bind(el, binding, vnode) {
-        const lagTime = hasLagTime => {
+        const hasDelay = binding.modifiers.delay
+        const userColor = binding.value
+        const defaultColor = 'yellow'
+        let currentColor = userColor
+
+        setTimeout(() => {
+          if(binding.modifiers.toggle) {
+            setInterval(() => {
+              currentColor = (currentColor === userColor) ? defaultColor : userColor
+
+              applyColor(currentColor)
+            }, 1000)
+          }
+
+          else {
+            applyColor(binding.value)
+          }
+        }, lagTime(hasDelay))
+
+        function lagTime(hasLagTime) {
           if(hasLagTime) {
             return 3000
           }
 
           return 0
         }
-        const hasDelay = binding.modifiers.delay
 
-        setTimeout(() => {
+        function applyColor(color) {
           if( binding.arg === 'bg' ) {
-            el.style.backgroundColor = binding.value
+            el.style.backgroundColor = color
           }
 
           else {
-            el.style.color = binding.value
+            el.style.color = color
           }
-        }, lagTime(hasDelay))
+        }
       }
     }
   },
