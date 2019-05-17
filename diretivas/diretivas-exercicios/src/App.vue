@@ -1,6 +1,8 @@
 <template>
 	<div id="app">
-		<h1>Diretivas</h1>
+		<h1>
+      Diretivas
+    </h1>
 
     <p v-text="'Usando a diretiva <strong>v-text</strong>'"></p>
 
@@ -10,17 +12,51 @@
 
     <hr>
 
-    <p v-featured:bg="'red'">Usando diretiva customizada</p>
-    <p v-featured="color">Usando diretiva customizada</p>
-    <p v-featured:bg.delay="'blue'">Usando diretiva customizada</p>
-    <p v-featured.delay="'indianred'">Usando diretiva customizada</p>
+    <p v-featured:bg="'red'">
+      Usando diretiva customizada
+    </p>
+
+    <p v-featured="color">
+      Usando diretiva customizada
+    </p>
+
+    <p v-featured:bg.delay="'blue'">
+      Usando diretiva customizada
+    </p>
+
+    <p v-featured.delay="'indianred'">
+      Usando diretiva customizada
+    </p>
 
     <hr>
 
-    <p v-local-featured:bg="'cyan'">Usando diretiva customizada</p>
-    <p v-local-featured="color">Usando diretiva customizada</p>
-    <p v-local-featured:bg.delay.toggle="'magenta'">Usando diretiva customizada</p>
-    <p v-local-featured.delay="'yellow'">Usando diretiva customizada</p>
+    <p v-local-featured:bg="'cyan'">
+      Usando diretiva customizada
+    </p>
+
+    <p v-local-featured="color">
+      Usando diretiva customizada
+    </p>
+
+    <p
+      v-local-featured:bg.delay.toggle="{
+        startColor: 'cyan',
+        endColor: 'yellow',
+        delay: 2000,
+        interval: 200
+      }"
+    >
+      Usando diretiva customizada
+    </p>
+
+    <p
+      v-local-featured.delay="{
+        startColor: 'red',
+        delay: 5000
+      }"
+    >
+      Usando diretiva customizada
+    </p>
 	</div>
 </template>
 
@@ -30,8 +66,8 @@ export default {
     'local-featured': {
       bind(el, binding, vnode) {
         const hasDelay = binding.modifiers.delay
-        const userColor = binding.value
-        const defaultColor = 'yellow'
+        const userColor = binding.value.startColor
+        const defaultColor = binding.value.endColor
         let currentColor = userColor
 
         setTimeout(() => {
@@ -40,17 +76,17 @@ export default {
               currentColor = (currentColor === userColor) ? defaultColor : userColor
 
               applyColor(currentColor)
-            }, 1000)
+            }, binding.value.interval)
           }
 
           else {
-            applyColor(binding.value)
+            applyColor(binding.value.startColor)
           }
         }, lagTime(hasDelay))
 
         function lagTime(hasLagTime) {
           if(hasLagTime) {
-            return 3000
+            return binding.value.delay
           }
 
           return 0
