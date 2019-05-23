@@ -1,12 +1,27 @@
 <template>
 	<div id="app">
 		<h1>Filtros & Mixins</h1>
+
+    <hr>
+
+    <p>
+      {{ cpf | formatCPF }}
+    </p>
 	</div>
 </template>
 
 <script>
 export default {
-
+  filters: {
+    formatCPF(cpf) {
+      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+    }
+  },
+  data() {
+    return {
+      cpf: '01245823695'
+    }
+  }
 }
 </script>
 
