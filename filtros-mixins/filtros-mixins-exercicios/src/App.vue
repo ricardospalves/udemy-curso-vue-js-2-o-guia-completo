@@ -5,7 +5,7 @@
     <hr>
 
     <p>
-      {{ cpf | formatCPF }}
+      {{ cpf | formatCPF | reverse }}
     </p>
 	</div>
 </template>
