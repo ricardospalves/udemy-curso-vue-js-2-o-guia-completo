@@ -7,6 +7,8 @@
     <p>
       {{ cpf | formatCPF | reverse }}
     </p>
+
+    <input type="text" :value="cpf | formatCPF | reverse">
 	</div>
 </template>
 
