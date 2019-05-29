@@ -9,11 +9,38 @@
     </p>
 
     <input type="text" :value="cpf | formatCPF | reverse">
+
+    <hr>
+
+    <Fruits/>
+
+    <hr>
+
+    <div>
+      <ul>
+        <li
+          v-for="fruit in fruits" :key="fruit"
+        >
+          {{ fruit }}
+        </li>
+      </ul>
+
+      <input type="text" v-model="fruit" @keydown.enter="add">
+    </div>
 	</div>
 </template>
 
 <script>
+import mixinFruit from './mixinFruit'
+import Fruits from './Fruits.vue'
+
 export default {
+  components: {
+    Fruits
+  },
+  mixins: [
+    mixinFruit
+  ],
   filters: {
     formatCPF(cpf) {
       return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
