@@ -20,6 +20,15 @@
         {{ message }}
       </b-alert>
     </transition>
+
+    <transition name="fadeUp">
+      <b-alert
+        show
+        v-if="isShow"
+      >
+        {{ message }}
+      </b-alert>
+    </transition>
 	</div>
 </template>
 
@@ -53,5 +62,37 @@ export default {
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity .2s;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOuDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
+
+.fadeUp-enter-active {
+  animation: fadeInUp .2s ease;
+}
+
+.fadeUp-leave-active {
+  animation: fadeOuDown .2s ease;
 }
 </style>
