@@ -12,7 +12,7 @@
       Alternar alerta
     </b-button>
 
-    <transition name="fade">
+    <!-- <transition name="fade" appear>
       <b-alert
         show
         v-if="isShow"
@@ -21,7 +21,35 @@
       </b-alert>
     </transition>
 
-    <transition name="fadeUp">
+    <transition name="fadeUp" appear>
+      <b-alert
+        show
+        v-if="isShow"
+      >
+        {{ message }}
+      </b-alert>
+    </transition>
+
+    <transition
+      enter-active-class="animated bounce"
+      leave-active-class="animated shake"
+    >
+      <b-alert
+        show
+        v-if="isShow"
+      >
+        {{ message }}
+      </b-alert>
+    </transition> -->
+
+    <hr>
+
+    <b-select v-model="animationType">
+      <option value="fade">Fade</option>
+      <option value="fadeUp">Fade Up</option>
+    </b-select>
+
+    <transition :name="animationType">
       <b-alert
         show
         v-if="isShow"
@@ -37,7 +65,8 @@ export default {
 	data() {
     return {
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!',
-      isShow: false
+      isShow: false,
+      animationType: 'fade'
     }
   }
 }
