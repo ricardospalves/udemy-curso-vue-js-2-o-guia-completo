@@ -49,10 +49,30 @@
       <option value="fadeUp">Fade Up</option>
     </b-select>
 
-    <transition :name="animationType">
+    <!-- <transition :name="animationType">
       <b-alert
         show
         v-if="isShow"
+      >
+        {{ message }}
+      </b-alert>
+    </transition> -->
+
+    <transition :name="animationType" mode="out-in">
+      <b-alert
+        variant="info"
+        show
+        v-if="isShow"
+        key="info"
+      >
+        {{ message }}
+      </b-alert>
+
+      <b-alert
+        variant="warning"
+        show
+        v-else
+        key="warning"
       >
         {{ message }}
       </b-alert>
