@@ -12,7 +12,7 @@
       Alternar alerta
     </b-button>
 
-    <!-- <transition name="fade" appear>
+    <transition name="fade" appear>
       <b-alert
         show
         v-if="isShow"
@@ -40,7 +40,7 @@
       >
         {{ message }}
       </b-alert>
-    </transition> -->
+    </transition>
 
     <hr>
 
@@ -49,14 +49,14 @@
       <option value="fadeUp">Fade Up</option>
     </b-select>
 
-    <!-- <transition :name="animationType">
+    <transition :name="animationType">
       <b-alert
         show
         v-if="isShow"
       >
         {{ message }}
       </b-alert>
-    </transition> -->
+    </transition>
 
     <transition :name="animationType" mode="out-in">
       <b-alert
@@ -77,6 +77,34 @@
         {{ message }}
       </b-alert>
     </transition>
+
+    <hr>
+
+    <b-button
+      variant="primary"
+      @click="isShowBox = !isShowBox"
+    >
+      Mostrar caixa
+    </b-button>
+
+    <transition
+      :css="false"
+
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @enter-cancelled="enterCancelled"
+
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @leave-cancelled="leaveCancelled"
+    >
+      <div
+        class="box"
+        v-if="isShowBox"
+      ></div>
+    </transition>
 	</div>
 </template>
 
@@ -86,7 +114,36 @@ export default {
     return {
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!',
       isShow: false,
+      isShowBox: true,
       animationType: 'fade'
+    }
+  },
+  methods: {
+    beforeEnter(el) {
+      console.log('beforeEnter')
+    },
+    enter(el, done) {
+      console.log('Enter')
+      done()
+    },
+    afterEnter(el) {
+      console.log('afterEnter')
+    },
+    enterCancelled() {
+      console.log('enterCancelled')
+    },
+    beforeLeave(el) {
+      console.log('beforeLeave')
+    },
+    leave(el, done) {
+      console.log('leave')
+      done()
+    },
+    afterLeave() {
+      console.log('afterLeave')
+    },
+    leaveCancelled() {
+      console.log('leaveCancelled')
     }
   }
 }
@@ -101,6 +158,12 @@ export default {
 	color: #2c3e50;
 	margin-top: 60px;
 	font-size: 1.5rem;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+  background-color: black;
 }
 
 .fade-enter,
