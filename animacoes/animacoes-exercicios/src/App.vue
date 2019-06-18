@@ -84,7 +84,7 @@
       variant="primary"
       @click="isShowBox = !isShowBox"
     >
-      Mostrar caixa
+      Alternar caixa
     </b-button>
 
     <transition
@@ -92,13 +92,9 @@
 
       @before-enter="beforeEnter"
       @enter="enter"
-      @after-enter="afterEnter"
-      @enter-cancelled="enterCancelled"
 
       @before-leave="beforeLeave"
       @leave="leave"
-      @after-leave="afterLeave"
-      @leave-cancelled="leaveCancelled"
     >
       <div
         class="box"
@@ -115,35 +111,39 @@ export default {
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!',
       isShow: false,
       isShowBox: true,
-      animationType: 'fade'
+      animationType: 'fade',
+      baseWidthOfBox: 0
     }
   },
   methods: {
+    animate(element, done, isNegative = false) {
+      let counter = 1
+      const interval = setInterval(() => {
+        const newWidth = this.baseWidthOfBox + ( isNegative ? -counter * 10 : counter * 10 )
+
+        element.style.width = `${newWidth}px`
+
+        counter++
+
+        if(counter > 30) {
+          clearInterval(interval)
+          done()
+        }
+      })
+    },
     beforeEnter(el) {
-      console.log('beforeEnter')
+      this.baseWidthOfBox = 0
+      el.style.width = `${this.baseWidthOfBox}px`
     },
     enter(el, done) {
-      console.log('Enter')
-      done()
-    },
-    afterEnter(el) {
-      console.log('afterEnter')
-    },
-    enterCancelled() {
-      console.log('enterCancelled')
+      this.animate(el, done)
     },
     beforeLeave(el) {
-      console.log('beforeLeave')
+      this.baseWidthOfBox = 300
+      el.style.width = `${this.baseWidthOfBox}px`
     },
     leave(el, done) {
-      console.log('leave')
-      done()
-    },
-    afterLeave() {
-      console.log('afterLeave')
-    },
-    leaveCancelled() {
-      console.log('leaveCancelled')
+      this.animate(el, done, true)
     }
   }
 }
@@ -163,6 +163,8 @@ export default {
 .box {
   width: 300px;
   height: 300px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: black;
 }
 
