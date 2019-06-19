@@ -101,18 +101,51 @@
         v-if="isShowBox"
       ></div>
     </transition>
+
+    <hr>
+
+    <b-button-group>
+      <b-button
+        variant="primary"
+        @click="componentSelected = 'AlertInfo'"
+      >
+        Alert Info
+      </b-button>
+
+      <b-button
+        variant="warning"
+        @click="componentSelected = 'AlertWarning'"
+      >
+        Alert Warning
+      </b-button>
+    </b-button-group>
+
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <component :is="componentSelected"></component>
+    </transition>
 	</div>
 </template>
 
 <script>
+import AlertWarning from './AlertWarning.vue'
+import AlertInfo from './AlertInfo.vue'
+
 export default {
+  components: {
+    AlertInfo,
+    AlertWarning
+  },
 	data() {
     return {
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!',
       isShow: false,
       isShowBox: true,
       animationType: 'fade',
-      baseWidthOfBox: 0
+      baseWidthOfBox: 0,
+      componentSelected: 'AlertInfo'
     }
   },
   methods: {
