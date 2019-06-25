@@ -2,7 +2,7 @@
 	<div id="app" class="container-fluid">
 		<h1>Animações</h1>
 
-    <hr>
+    <!-- <hr>
 
     <b-button
       class="mb-4"
@@ -125,7 +125,32 @@
       mode="out-in"
     >
       <component :is="componentSelected"></component>
-    </transition>
+    </transition> -->
+
+    <hr>
+
+    <button
+      class="mb-4"
+      @click="addStudent"
+    >
+      Adicionar aluno
+    </button>
+
+    <transition-group
+      tag="div"
+      name="listItemFade"
+    >
+      <b-list-group
+        class="relative"
+        v-for="(student, index) in students" :key="student"
+      >
+        <b-list-group-item
+          @click="removeStudent(index)"
+        >
+          {{ student }}
+        </b-list-group-item>
+      </b-list-group>
+    </transition-group>
 	</div>
 </template>
 
@@ -145,10 +170,24 @@ export default {
       isShowBox: true,
       animationType: 'fade',
       baseWidthOfBox: 0,
-      componentSelected: 'AlertInfo'
+      componentSelected: 'AlertInfo',
+      students: [
+        'Maria',
+        'Jose',
+        'Madalena',
+        'Joao'
+      ]
     }
   },
   methods: {
+    addStudent() {
+      const randomString = Math.random().toString(32).substring(2)
+
+      this.students.push(randomString)
+    },
+    removeStudent(index) {
+      this.students.splice(index, 1)
+    },
     animate(element, done, isNegative = false) {
       let counter = 1
       const interval = setInterval(() => {
@@ -241,5 +280,22 @@ export default {
 
 .fadeUp-leave-active {
   animation: fadeOuDown .2s ease;
+}
+
+.listItemFade-enter-active {
+  animation: fadeInUp .2s ease;
+}
+
+.listItemFade-leave-active {
+
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  animation: fadeOuDown .2s ease;
+}
+
+.listItemFade-move {
+  transition: transform .2s;
 }
 </style>
