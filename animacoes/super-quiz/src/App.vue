@@ -5,11 +5,13 @@
     <Question
       v-if="questionMode"
       :question="questions[currentQuestion]"
+      @answered="showResult"
     />
 
     <Result
       v-else
       :result="result"
+      @confirmed="nextQuestion"
     />
 	</div>
 </template>
@@ -30,6 +32,17 @@ export default {
       questionMode: true,
       questions,
       currentQuestion: 0
+    }
+  },
+  methods: {
+    showResult(result) {
+      this.result = result
+      this.questionMode = false
+    },
+    nextQuestion() {
+      const randomNumber = Math.random() * this.questions.length
+      this.questionMode = true
+      this.currentQuestion = parseInt(randomNumber)
     }
   }
 }

@@ -5,6 +5,7 @@
         <li
           v-for="(answer, index) in question.answers"
           :key="index"
+          @click="$emit('answered', answer.correct)"
         >
           <span class="number">
             {{ index + 1 }}
