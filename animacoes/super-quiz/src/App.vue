@@ -2,17 +2,22 @@
 	<div id="app">
 		<h1>Super Quiz</h1>
 
-    <Question
-      v-if="questionMode"
-      :question="questions[currentQuestion]"
-      @answered="showResult"
-    />
+    <transition
+      name="flip"
+      mode="out-in"
+    >
+      <Question
+        v-if="questionMode"
+        :question="questions[currentQuestion]"
+        @answered="showResult"
+      />
 
-    <Result
-      v-else
-      :result="result"
-      @confirmed="nextQuestion"
-    />
+      <Result
+        v-else
+        :result="result"
+        @confirmed="nextQuestion"
+      />
+    </transition>
 	</div>
 </template>
 
