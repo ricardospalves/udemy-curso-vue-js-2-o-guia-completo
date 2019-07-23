@@ -11,6 +11,7 @@
           size="lg"
           v-model="user.name"
           placeholder="ex.: Maria"
+          autofocus
         ></b-form-input>
       </b-form-group>
 
@@ -50,7 +51,11 @@ export default {
   },
   methods: {
     save() {
-      console.log(this.user)
+      this.$http.post('user.json', this.user)
+        .then(response => {
+          this.user.name = ''
+          this.user.email = ''
+        })
     }
   }
   // created() {
