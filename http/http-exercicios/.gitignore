@@ -1,3 +1,7 @@
+# Project
+src/plugins/axiosConfigs.json
+
+# Node
 .DS_Store
 node_modules
 /dist
