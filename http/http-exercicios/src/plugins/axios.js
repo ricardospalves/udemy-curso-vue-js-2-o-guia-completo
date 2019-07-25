@@ -12,6 +12,6 @@ Vue.use({
       console.log(config.method)
 
       return config
-    })
+    }, error => Promise.reject(error))
   }
 })
