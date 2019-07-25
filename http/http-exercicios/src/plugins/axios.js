@@ -13,5 +13,20 @@ Vue.use({
 
       return config
     }, error => Promise.reject(error))
+
+    Vue.prototype.$http.interceptors.response.use(response => {
+      // const users = []
+
+      // for(let key in response.data) {
+      //   users.push({
+      //     id: key,
+      //     ...response.data[key]
+      //   })
+      // }
+
+      // response.data = users
+
+      return response
+    }, error => Promise.reject(error))
   }
 })
