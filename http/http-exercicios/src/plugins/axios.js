@@ -2,11 +2,22 @@ import axiosConfigs from './axiosConfigs.json'
 import Vue from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = axiosConfigs.baseURL
+// axios global
+// axios.defaults.baseURL = axiosConfigs.baseURL
+// axios.defaults.headers.commom['Authorization'] = 'abc123'
+// axios.defaults.headers.get['Accepts'] = 'application/json'
 
 Vue.use({
   install(Vue) {
-    Vue.prototype.$http = axios
+    // axios global
+    // Vue.prototype.$http = axios
+
+    Vue.prototype.$http = axios.create({
+      baseURL: axiosConfigs.baseURL,
+      headers: {
+        'Authorization': 'abc123'
+      }
+    })
 
     Vue.prototype.$http.interceptors.request.use(config => {
       console.log(config.method)
