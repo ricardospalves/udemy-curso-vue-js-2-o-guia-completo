@@ -57,7 +57,24 @@
       >
         <strong>ID:</strong> {{ id }}<br>
         <strong>Nome:</strong> {{ user.name }}<br>
-        <strong>E-mail:</strong> {{ user.email }}
+        <strong>E-mail:</strong> {{ user.email }}<br>
+
+        <b-button
+          variant="primary"
+          size="lg"
+          @click="load(id)"
+        >
+          Carregar
+        </b-button>
+
+        <b-button
+          variant="danger"
+          size="lg"
+          class="ml-2"
+          @click="del(id)"
+        >
+          Deletar
+        </b-button>
       </b-list-group-item>
     </b-list-group>
 	</div>
@@ -68,6 +85,7 @@ export default {
   data() {
     return {
       registeredUsers: [],
+      id: null,
       user: {
         name: '',
         email: ''
@@ -75,12 +93,25 @@ export default {
     }
   },
   methods: {
+    clear() {
+      this.id = null
+      this.user.email = ''
+      this.user.name = ''
+    },
+    load(id) {
+      this.id = id
+      this.user = { ...this.registeredUsers[id] }
+    },
+    del(id) {
+      this.$http.delete(`/user/${id}.json`)
+        .then(() => this.clear())
+    },
     save() {
-      this.$http.post('user.json', this.user)
-        .then(response => {
-          this.user.name = ''
-          this.user.email = ''
-        })
+      const method = this.id ? 'patch' : 'post'
+      const endUrl = this.id ? `/${this.id}.json` : '.json'
+
+      this.$http[method](`/user${endUrl}`, this.user)
+        .then(() => this.clear())
     },
     getUsers() {
       this.$http.get('user.json')
