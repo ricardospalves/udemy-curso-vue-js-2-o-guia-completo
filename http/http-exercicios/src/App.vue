@@ -2,6 +2,16 @@
 	<div id="app" class="container">
 		<h1>HTTP com Axios</h1>
 
+    <b-alert
+      show
+      dismissible
+      v-for="message in messages"
+      :key="message.text"
+      :variant="message.type"
+    >
+      {{ message.text }}
+    </b-alert>
+
     <b-card>
       <b-form-group
         label="Nome:"
@@ -81,9 +91,17 @@
 </template>
 
 <script>
+class Message {
+  constructor({ type, text }) {
+    this.type = type
+    this.text = text
+  }
+}
+
 export default {
   data() {
     return {
+      messages: [],
       registeredUsers: [],
       id: null,
       user: {
@@ -93,10 +111,11 @@ export default {
     }
   },
   methods: {
-    clear() {
+    clean() {
       this.id = null
       this.user.email = ''
       this.user.name = ''
+      this.messages = []
     },
     load(id) {
       this.id = id
@@ -104,14 +123,28 @@ export default {
     },
     del(id) {
       this.$http.delete(`/user/${id}.json`)
-        .then(() => this.clear())
+        .then(() => this.clean())
+        .catch(error => {
+          console.error(error)
+
+          this.messages.push(new Message({
+            type: 'danger',
+            text: 'Problema para excluir'
+          }))
+        })
     },
     save() {
       const method = this.id ? 'patch' : 'post'
       const endUrl = this.id ? `/${this.id}.json` : '.json'
 
       this.$http[method](`/user${endUrl}`, this.user)
-        .then(() => this.clear())
+        .then(() => {
+          this.clean()
+          this.messages.push(new Message({
+            type: 'success',
+            text: 'Cadastro realizado com sucesso!'
+          }))
+        })
     },
     getUsers() {
       this.$http.get('user.json')
