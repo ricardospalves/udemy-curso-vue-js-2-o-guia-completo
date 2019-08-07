@@ -2,13 +2,19 @@
 	<div id="app">
 		<h1>Rotas com VueRouter</h1>
 
+    <Navigator/>
+
     <router-view/>
 	</div>
 </template>
 
 <script>
-export default {
+import Navigator from './components/templates/Navigator'
 
+export default {
+  components: {
+    Navigator
+  }
 }
 </script>
 
