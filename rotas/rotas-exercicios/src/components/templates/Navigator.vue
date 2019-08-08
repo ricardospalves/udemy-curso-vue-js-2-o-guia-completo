@@ -13,10 +13,19 @@
 
       <li>
         <router-link
-          to="/usuario/10"
+          to="/usuario/1"
           active-class="active"
         >
-          Usuário
+          Usuário 1
+        </router-link>
+      </li>
+
+      <li>
+        <router-link
+          to="/usuario/2"
+          active-class="active"
+        >
+          Usuário 2
         </router-link>
       </li>
     </ul>
