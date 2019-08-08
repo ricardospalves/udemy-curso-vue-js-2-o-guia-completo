@@ -13,7 +13,7 @@
 
       <li>
         <router-link
-          to="/usuario"
+          to="/usuario/10"
           active-class="active"
         >
           Usuário

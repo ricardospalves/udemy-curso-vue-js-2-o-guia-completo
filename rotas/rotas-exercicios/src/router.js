@@ -16,6 +16,6 @@ export default new Router({
   mode: 'history',
   routes: [
     new Route('/', Index),
-    new Route('/usuario', Usuario)
+    new Route('/usuario/:id', Usuario)
   ]
 })
