@@ -4,9 +4,10 @@ import Index from './components/Index'
 import Usuario from './components/usuario/Usuario'
 
 class Route {
-  constructor(path, component) {
+  constructor(path, component, props = false) {
     this.path = path
     this.component = component
+    this.props = props
   }
 }
 
@@ -16,6 +17,6 @@ export default new Router({
   mode: 'history',
   routes: [
     new Route('/', Index),
-    new Route('/usuario/:id', Usuario)
+    new Route('/usuario/:id', Usuario, true)
   ]
 })

@@ -14,11 +14,14 @@
 
 <script>
 export default {
-  data() {
-    return {
-      id: this.$route.params.id
-    }
-  },
+  props: [
+    'id'
+  ],
+  // data() {
+  //   return {
+  //     id: this.$route.params.id
+  //   }
+  // },
   watch: {
     $route(to) {
       this.id = to.params.id
