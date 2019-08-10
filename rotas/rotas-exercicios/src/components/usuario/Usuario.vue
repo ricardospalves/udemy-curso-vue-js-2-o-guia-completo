@@ -2,11 +2,9 @@
   <div>
     <h2>Usuários</h2>
 
-    <p>
-      <strong>Código:</strong> {{ id }}
-    </p>
+    <hr>
 
-    <br>
+    <router-view/>
 
     <button sucesso @click="goToHome">Voltar para a página inicial</button>
   </div>
@@ -14,19 +12,6 @@
 
 <script>
 export default {
-  props: [
-    'id'
-  ],
-  // data() {
-  //   return {
-  //     id: this.$route.params.id
-  //   }
-  // },
-  watch: {
-    $route(to) {
-      this.id = to.params.id
-    }
-  },
   methods: {
     goToHome() {
       // this.$router.push('/')
