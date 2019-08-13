@@ -7,6 +7,14 @@
     <p>
       <strong>Código:</strong> {{ id }}
     </p>
+
+    <router-link
+      tag="button"
+      :to="`/usuario/${id}/editar`"
+      primario
+    >
+      Editar
+    </router-link>
   </div>
 </template>
 
