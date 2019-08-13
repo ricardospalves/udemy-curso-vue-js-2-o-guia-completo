@@ -15,6 +15,10 @@
         name: 'editarUsuario',
         param: {
           id
+        },
+        query: {
+          isCompleted: true,
+          language: 'pt-BR'
         }
       }"
       primario

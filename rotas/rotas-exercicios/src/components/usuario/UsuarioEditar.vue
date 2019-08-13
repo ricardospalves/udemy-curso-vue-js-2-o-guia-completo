@@ -7,6 +7,14 @@
     <p>
       <strong>Código:</strong> {{ id }}
     </p>
+
+    <p>
+      <strong>Completo:</strong> {{ $route.query.isCompleted ? 'Sim' : 'Não' }}
+    </p>
+
+    <p>
+      <strong>Linguagem:</strong> {{ $route.query.language }}
+    </p>
   </div>
 </template>
 
