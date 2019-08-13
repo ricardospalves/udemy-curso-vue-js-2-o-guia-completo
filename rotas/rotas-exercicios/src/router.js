@@ -13,6 +13,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      name: 'index',
       path: '/',
       component: Index
     },
@@ -31,6 +32,7 @@ export default new Router({
           props: true
         },
         {
+          name: 'editarUsuario',
           path: ':id/editar',
           component: UsuarioEditar,
           props: true

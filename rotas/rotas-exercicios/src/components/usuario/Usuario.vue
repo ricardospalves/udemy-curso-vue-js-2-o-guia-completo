@@ -15,8 +15,11 @@ export default {
   methods: {
     goToHome() {
       // this.$router.push('/')
+      // this.$router.push({
+      //   path: '/'
+      // })
       this.$router.push({
-        path: '/'
+        name: 'index'
       })
     }
   }

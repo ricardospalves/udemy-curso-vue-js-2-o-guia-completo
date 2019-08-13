@@ -8,9 +8,15 @@
       <strong>Código:</strong> {{ id }}
     </p>
 
+    <!-- :to="`/usuario/${id}/editar`" -->
     <router-link
       tag="button"
-      :to="`/usuario/${id}/editar`"
+      :to="{
+        name: 'editarUsuario',
+        param: {
+          id
+        }
+      }"
       primario
     >
       Editar
