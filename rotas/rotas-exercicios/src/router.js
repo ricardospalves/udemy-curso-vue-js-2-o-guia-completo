@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './components/Index'
-
+import Navigator from './components/templates/Navigator'
+import NavigatorEn from './components/templates/NavigatorEn'
 import Usuario from './components/usuario/Usuario'
 import UsuarioLista from './components/usuario/UsuarioLista'
 import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
@@ -15,11 +16,20 @@ export default new Router({
     {
       name: 'index',
       path: '/',
-      component: Index
+      // component: Index
+      components: {
+        default: Index,
+        navigator: Navigator
+      }
     },
     {
       path: '/usuario',
-      component: Usuario,
+      // component: Usuario,
+      components: {
+        default: Usuario,
+        navigator: NavigatorEn,
+        navigatorBottom: NavigatorEn
+      },
       props: true,
       children: [
         {
