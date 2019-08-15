@@ -48,6 +48,14 @@ export default new Router({
           props: true
         }
       ]
+    },
+    {
+      path: '/redirecionar',
+      redirect: '/usuario'
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
