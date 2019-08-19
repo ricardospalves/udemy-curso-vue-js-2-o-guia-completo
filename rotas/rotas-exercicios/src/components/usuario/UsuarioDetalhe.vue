@@ -19,7 +19,8 @@
         query: {
           isCompleted: true,
           language: 'pt-BR'
-        }
+        },
+        hash: '#rodape'
       }"
       primario
     >
