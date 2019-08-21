@@ -34,6 +34,11 @@ export default {
   props: [
     'id'
   ],
+  beforeRouteEnter(to, from, next) {
+    console.log('Dentro do componente -> usuário detalhe')
+
+    next()
+  }
   // data() {
   //   return {
   //     id: this.$route.params.id

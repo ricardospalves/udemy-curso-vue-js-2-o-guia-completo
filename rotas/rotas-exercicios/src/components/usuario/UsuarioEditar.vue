@@ -16,6 +16,10 @@
       <strong>Linguagem:</strong> {{ $route.query.language }}
     </p>
 
+    <button primario>
+      Confirmar
+    </button>
+
     <div id="rodape">
       <h3>
         Curso Vue
