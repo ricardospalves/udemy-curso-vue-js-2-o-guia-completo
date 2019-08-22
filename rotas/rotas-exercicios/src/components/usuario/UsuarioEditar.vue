@@ -16,7 +16,10 @@
       <strong>Linguagem:</strong> {{ $route.query.language }}
     </p>
 
-    <button primario>
+    <button
+      primario
+      @click="isConfirmed = true"
+    >
       Confirmar
     </button>
 
@@ -32,7 +35,27 @@
 export default {
   props: [
     'id'
-  ]
+  ],
+  data() {
+    return {
+      isConfirmed: false
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    if(this.isConfirmed) {
+      next()
+    }
+
+    else {
+      if(confirm('Tem certeza que deseja sair?')) {
+        next()
+      }
+
+      else {
+        next(false)
+      }
+    }
+  }
 }
 </script>
 
