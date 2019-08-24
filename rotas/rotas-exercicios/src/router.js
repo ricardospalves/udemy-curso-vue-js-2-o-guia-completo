@@ -3,10 +3,15 @@ import Router from 'vue-router'
 import Index from './components/Index'
 import Navigator from './components/templates/Navigator'
 import NavigatorEn from './components/templates/NavigatorEn'
-import Usuario from './components/usuario/Usuario'
-import UsuarioLista from './components/usuario/UsuarioLista'
-import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
-import UsuarioEditar from './components/usuario/UsuarioEditar'
+// import Usuario from './components/usuario/Usuario'
+// import UsuarioLista from './components/usuario/UsuarioLista'
+// import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
+// import UsuarioEditar from './components/usuario/UsuarioEditar'
+
+const Usuario = () => import(/* webpackChunkName: "usuario" */ './components/usuario/Usuario')
+const UsuarioLista = () => import(/* webpackChunkName: "usuario" */ './components/usuario/UsuarioLista')
+const UsuarioDetalhe = () => import(/* webpackChunkName: "usuario" */ './components/usuario/UsuarioDetalhe')
+const UsuarioEditar = () => import(/* webpackChunkName: "usuario" */ './components/usuario/UsuarioEditar')
 
 Vue.use(Router)
 
