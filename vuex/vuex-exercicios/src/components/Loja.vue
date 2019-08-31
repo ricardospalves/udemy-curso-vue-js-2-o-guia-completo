@@ -23,14 +23,14 @@ export default {
     methods: {
         adicionar() {
             const produto = {
-                id: this.sequencia,
-                nome: `Produto ${this.sequencia}`,
-                quantidade: this.quantidade,
-                preco: this.preco
+              id: this.sequencia,
+              nome: `Produto ${this.sequencia}`,
+              quantidade: this.quantidade,
+              preco: this.preco
             }
             this.sequencia++
-            // eslint-disable-next-line
-            console.log(produto)
+
+            this.$store.state.produtos.push(produto)
         }
     }
 }
