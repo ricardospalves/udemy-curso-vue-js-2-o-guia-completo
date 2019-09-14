@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
+    ...mapActions('carrinho', [
       'adicionarProduto'
     ]),
     adicionar() {
