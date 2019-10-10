@@ -20,7 +20,7 @@ export default {
 
       state.funds -= stockPrice * quantity
     },
-    sellStocks(state, { stockId, quantity, stockPrice }) {
+    sellStock(state, { stockId, quantity, stockPrice }) {
       const record = state.stocks.find(element => element.id === stockId)
 
       if(record.quantity > quantity) {
@@ -32,28 +32,28 @@ export default {
       }
 
       state.funds += stockPrice * quantity
-    },
-    actions: {
-      sellStock({ commit }, order) {
-        commit('sellStock', order)
-      }
-    },
-    getters: {
-      stockPortfolio(state, getters) {
-        return state.stocks.map(stock => {
-          const { name, price } = getters.stocks.find(element => element.id === stock.id)
+    }
+  },
+  actions: {
+    sellStock({ commit }, order) {
+      commit('sellStock', order)
+    }
+  },
+  getters: {
+    stockPortfolio(state, getters) {
+      return state.stocks.map(stock => {
+        const { name, price } = getters.stocks.find(element => element.id === stock.id)
 
-          return {
-            id: stock.id,
-            quantity: stock.quantity,
-            name,
-            price
-          }
-        })
-      },
-      funds(state) {
-        return state.funds
-      }
+        return {
+          id: stock.id,
+          quantity: stock.quantity,
+          name,
+          price
+        }
+      })
+    },
+    funds(state) {
+      return state.funds
     }
   }
 }
