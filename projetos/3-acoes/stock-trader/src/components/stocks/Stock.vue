@@ -12,14 +12,15 @@
           label="Quantidae"
           type="number"
           v-model.number="quantity"
+          :error="isInsufficientsFunds || !Number.isInteger(quantity)"
         />
 
         <v-btn
           class="green darken-3 white--text"
-          :disabled="quantity <= 0 || !Number.isInteger(quantity)"
+          :disabled="isInsufficientsFunds || quantity <= 0 || !Number.isInteger(quantity)"
           @click="buyStock"
         >
-          Comprar
+          {{ isInsufficientsFunds ? 'Insuficiente' : 'Comprar' }}
         </v-btn>
       </v-container>
     </v-card>
@@ -34,6 +35,14 @@ export default {
   data() {
     return {
       quantity: 0
+    }
+  },
+  computed: {
+    funds() {
+      return this.$store.getters.funds
+    },
+    isInsufficientsFunds() {
+      return this.quantity * this.stock.price > this.funds
     }
   },
   methods: {
