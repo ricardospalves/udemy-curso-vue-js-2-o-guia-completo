@@ -38,7 +38,7 @@
 
       <v-layout align-center>
         <span class="text-uppercase gray--text text--darken-2">
-          Saldo: {{ funds }}
+          Saldo: {{ funds | currency }}
         </span>
       </v-layout>
     </v-toolbar-items>
