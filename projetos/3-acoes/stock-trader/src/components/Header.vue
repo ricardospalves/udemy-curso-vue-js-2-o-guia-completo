@@ -28,7 +28,9 @@
 
         <v-list>
           <v-list-tile>
-            <v-list-tile-title>
+            <v-list-tile-title
+              @click="saveData"
+            >
               Salvar dados
             </v-list-tile-title>
           </v-list-tile>
@@ -65,6 +67,15 @@ export default {
     ]),
     endDay() {
       this.randomizeStocks()
+    },
+    saveData() {
+      const { funds, stockPortfolio, stocks } = this.$store.getters
+
+      this.$axios.put('data.json', {
+        funds,
+        stockPortfolio,
+        stocks
+      })
     }
   }
 }
