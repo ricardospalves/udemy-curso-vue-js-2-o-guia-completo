@@ -36,7 +36,9 @@
           </v-list-tile>
 
           <v-list-tile>
-            <v-list-tile-title>
+            <v-list-tile-title
+              @click="loadDataLocal"
+            >
               Carregar dados
             </v-list-tile-title>
           </v-list-tile>
@@ -63,7 +65,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'randomizeStocks'
+      'randomizeStocks',
+      'loadData'
     ]),
     endDay() {
       this.randomizeStocks()
@@ -76,6 +79,9 @@ export default {
         stockPortfolio,
         stocks
       })
+    },
+    loadDataLocal() {
+      this.loadData()
     }
   }
 }
